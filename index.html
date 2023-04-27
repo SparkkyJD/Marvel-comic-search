@@ -1,16 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Marvel Comic Finder</title>
-    <link rel="stylesheet" href="./assets/styles/reset.css">
-    <link rel="stylesheet" href="./assets/styles/style.css">
-</head>
-<body>
-    
+    <!-- Bulma CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+          <h2>Simple Marvel Comic Finder</h2>
+        </a>
+
+        <!-- mobile nav. ignore for now -->
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <form>
+              <div class="field has-addons">
+                <div class="control">
+                  <!-- use this id to select the search input in the dom -->
+                  <input
+                    id="marvel-search"
+                    class="input"
+                    type="text"
+                    placeholder="Search"
+                  />
+                </div>
+                <div class="control">
+                  <!-- use this id to select the search button in the dom -->
+                  <a id="marvel-search-button" class="button is-danger">
+                    Search
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- populate data as a list here to test it. It doesn't need to look pretty yet. -->
+      <ul id="test-list">
+        
+      </ul>
+    </main>
 
     <script src="./assets/scripts/script.js"></script>
-</body>
+  </body>
 </html>

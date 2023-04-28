@@ -1,9 +1,18 @@
 // ToDo: Get api keys and store them into variables
 
 // ToDo: Use selectors to store the html elements into variables
+var searchInput = document.querySelector('#marvel-search');
+var searchButton = document.querySelector('#marvel-search-button');
+var resultList = document.querySelector('#test-list');
 
 // ToDo: Write a function to obtain the user search on submit
 // and call that function on submit button click
+function submitSearch(event) {
+    event.preventDefault();
+
+    var userSearchInput = searchInput.value;
+    console.log(userSearchInput);
+}
 
 // ToDo: Write a function that takes the user search and makes an api call based on it
 
@@ -20,3 +29,4 @@
 // searches and displaying them to the page for shortcut links?
 
 // ToDo: Add event listener to submit button
+searchButton.addEventListener('click', submitSearch);

@@ -1,7 +1,19 @@
-main {
-    padding: 5%;
-}
-
-#test-list {
-    border: 1px solid black;
-}
+.card {
+    margin-bottom: 1rem;
+  }
+  
+  .card-image {
+    padding-right: 1rem;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .card-image {
+      padding-right: 0;
+      padding-bottom: 0.75rem;
+    }
+    
+    .card-content {
+      padding: 0.75rem;
+    }
+  }
+  

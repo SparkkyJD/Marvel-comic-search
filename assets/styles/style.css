@@ -1,10 +1,17 @@
+body {
+    height: 100vh;
+}
+
 #mlb-brand {
   height: 55px;
   max-height: 55px;
 }
 
-.wrapper {
-    flex-wrap: wrap;
+.show-card-modal {
+    max-height: 100%;
+    width: 100%;
+    overflow:hidden;
+    transition: transform 0.1s ease-in-out;
 }
 
 .writer, .penciler, .cover-artist {

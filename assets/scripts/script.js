@@ -20,3 +20,15 @@
 // searches and displaying them to the page for shortcut links?
 
 // ToDo: Add event listener to submit button
+
+const galleryItem = document.querySelector(".gallery-item");
+const showModal = document.querySelector(".modal");
+const modalBackground = document.querySelector(".modal-background");
+
+galleryItem.addEventListener('click', function () {
+    showModal.classList.add('is-active');
+    console.log('hello world');
+  });
+  modalBackground.addEventListener('click', function () {
+    showModal.classList.remove('is-active');
+  });

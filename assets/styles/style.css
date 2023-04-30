@@ -1,24 +1,32 @@
 #mlb-brand {
-    height: 55px;
-    max-height: 55px;
+  height: 55px;
+  max-height: 55px;
 }
 
-.card {
-    margin-bottom: 1rem;
+.wrapper {
+    flex-wrap: wrap;
+}
+
+.writer, .penciler, .cover-artist {
+    color: black;
+}
+
+.show-card-image {
+  padding-right: 1.25rem;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+    transition: transform 0.1s ease-in-out;
   }
-  
-  .show-card-image {
-    padding-right: 1rem;
+
+@media screen and (max-width: 768px) {
+  .card-image {
+    padding-right: 0;
+    padding-bottom: 0.75rem;
   }
-  
-  @media screen and (max-width: 768px) {
-    .card-image {
-      padding-right: 0;
-      padding-bottom: 0.75rem;
-    }
-    
-    .card-content {
-      padding: 0.75rem;
-    }
+
+  .card-content {
+    padding: 0.75rem;
   }
-  
+}

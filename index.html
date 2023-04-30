@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Marvel Comic Finder</title>
+    <title>Marvel Longbox</title>
     <!-- Bulma CDN -->
     <link
       rel="stylesheet"
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./assets/styles/style.css" />
   </head>
 
-  <body>
+  <body class="has-background-grey">
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="#">
@@ -25,7 +25,7 @@
         </a>
 
         <!-- mobile nav. ignore for now -->
-        <a
+        <!-- <a
           role="button"
           class="navbar-burger"
           aria-label="menu"
@@ -35,7 +35,7 @@
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </a>
+        </a> -->
       </div>
 
       <div class="navbar-menu">
@@ -65,12 +65,12 @@
       </div>
     </nav>
 
-    <main class="has-background-grey">
+    <main class="mt-5">
       <!-- show card -->
       <div class="container">
         <section class="columns">
           <div class="column">
-            <div class="card">
+            <div class="card mb-0">
               <div class="card-content">
                 <div class="columns is-gapless">
                   <div class="column is-3">
@@ -90,15 +90,24 @@
                       </h2>
                       <h1 class="title is-4">Published:</h1>
                       <p class="subtitle is-5 published">April 26, 2023</p>
-                      <h1 class="title is-4">Writer</h1>
-                      <p class="subtitle is-5">
-                        <a class="writer">Derek Landy</a>
-                      </p>
-                      <h1 class="title is-4">Penciler</h1>
-                      <p class="subtitle is-5">
-                        <a class="penciler">Greg Land</a>
-                      </p>
-                      <h1 class="title is-4">Cover Artist</h1>
+                      <div class="columns">
+                        <div class="column">
+                            <h1 class="title is-4">Writer:</h1>
+                            <p class="subtitle is-5">
+                              <a class="writer">Derek Landy</a>
+                            </p>
+                        </div>
+                        <div class="column">
+                            <h1 class="title is-4">Penciler:</h1>
+                            <p class="subtitle is-5">
+                              <a class="penciler">Greg Land</a>
+                            </p>
+                        </div>
+
+                      </div>
+
+
+                      <h1 class="title is-4">Cover Artist:</h1>
                       <p class="subtitle is-5">
                         <a class="cover-artist">Greg Land</a>
                       </p>
@@ -122,10 +131,12 @@
             </div>
           </div>
         </section>
-        <!-- gallery -->
-        <section class="columns">
-          <div class="column">
-            <div class="card">
+
+        <!-- my longbox gallery -->
+        <p class="title has-text-black-bis is-2 pb-2 has-text-weight-bold">My Longbox:</p>
+        <section class="columns is-flex-wrap-wrap">
+          <div class="column is-one-fifth">
+            <div class="card gallery-item">
               <div class="card-image px-5 pt-5">
                 <figure class="image is-is-2by3">
                   <img
@@ -134,16 +145,16 @@
                   />
                 </figure>
               </div>
-              <div class="card-content">
+              <div class="card-content pt-3">
                 <div class="content">
-                  <p class="title is-5">Avengers: Beyond (2023) #2</p>
+                  <p class="title is-5 pb-2">Avengers: Beyond (2023) #2</p>
                   <p class="subtitle is-6">Derek Landy</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="column">
-            <div class="card">
+          <div class="column is-one-fifth">
+            <div class="card gallery-item">
               <div class="card-image px-5 pt-5">
                 <figure class="image is-is-2by3">
                   <img
@@ -152,16 +163,16 @@
                   />
                 </figure>
               </div>
-              <div class="card-content">
+              <div class="card-content pt-3">
                 <div class="content">
-                  <p class="title is-5">Avengers: Beyond (2023) #2</p>
+                  <p class="title is-5 pb-2">Avengers: Beyond (2023) #2</p>
                   <p class="subtitle is-6">Derek Landy</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="column">
-            <div class="card">
+          <div class="column is-one-fifth">
+            <div class="card gallery-item">
               <div class="card-image px-5 pt-5">
                 <figure class="image is-is-2by3">
                   <img
@@ -170,16 +181,16 @@
                   />
                 </figure>
               </div>
-              <div class="card-content">
+              <div class="card-content pt-3">
                 <div class="content">
-                  <p class="title is-5">Avengers: Beyond (2023) #2</p>
+                  <p class="title is-5 pb-2">Avengers: Beyond (2023) #2</p>
                   <p class="subtitle is-6">Derek Landy</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="column">
-            <div class="card">
+          <div class="column is-one-fifth">
+            <div class="card gallery-item">
               <div class="card-image px-5 pt-5">
                 <figure class="image is-is-2by3">
                   <img
@@ -188,14 +199,33 @@
                   />
                 </figure>
               </div>
-              <div class="card-content">
+              <div class="card-content pt-3">
                 <div class="content">
-                  <p class="title is-5">Avengers: Beyond (2023) #2</p>
+                  <p class="title is-5 pb-2">Avengers: Beyond (2023) #2</p>
                   <p class="subtitle is-6">Derek Landy</p>
                 </div>
               </div>
             </div>
           </div>
+          <div class="column is-one-fifth">
+            <div class="card gallery-item">
+              <div class="card-image px-5 pt-5">
+                <figure class="image is-is-2by3">
+                  <img
+                    src="./assets/images/avengers_beyond_placeholder.jpg"
+                    alt="Placeholder image"
+                  />
+                </figure>
+              </div>
+              <div class="card-content pt-3">
+                <div class="content">
+                  <p class="title is-5 pb-2">Avengers: Beyond (2023) #2</p>
+                  <p class="subtitle is-6">Derek Landy</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </section>
       </div>
     </main>

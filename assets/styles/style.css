@@ -1,8 +1,13 @@
+#mlb-brand {
+    height: 55px;
+    max-height: 55px;
+}
+
 .card {
     margin-bottom: 1rem;
   }
   
-  .card-image {
+  .show-card-image {
     padding-right: 1rem;
   }
   

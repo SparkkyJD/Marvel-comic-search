@@ -22,6 +22,12 @@ body {
   color: black;
 }
 
+.hero {
+      background-image: url("https://images.unsplash.com/photo-1620928572438-075c466c48da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"); 
+ background-repeat: no-repeat;
+  background-size: cover; 
+}
+
 .show-card-image {
   padding-right: 1.25rem;
 }

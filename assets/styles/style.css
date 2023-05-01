@@ -1,5 +1,7 @@
 body {
-    height: 100vh;
+  /* background-image: url("https://images.unsplash.com/photo-1620928572438-075c466c48da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"); */
+  /* background-repeat: no-repeat;
+  background-size: cover; */
 }
 
 #mlb-brand {
@@ -8,24 +10,59 @@ body {
 }
 
 .show-card-modal {
-    max-height: 100%;
-    width: 100%;
-    overflow:hidden;
-    transition: transform 0.1s ease-in-out;
+  max-height: 100%;
+  width: 100%;
+  overflow: hidden;
+  transition: transform 0.1s ease-in-out;
 }
 
-.writer, .penciler, .cover-artist {
-    color: black;
+.writer,
+.penciler,
+.cover-artist {
+  color: black;
 }
 
 .show-card-image {
   padding-right: 1.25rem;
 }
 
-.gallery-item:hover {
-    transform: scale(1.02);
-    transition: transform 0.1s ease-in-out;
-  }
+.search-item, .gallery-item {
+    position: relative;
+}
+
+.search-item:hover, .gallery-item:hover  {
+  transform: scale(1.02);
+  transition: transform 0.1s ease-in-out;
+}
+
+.search-item:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 19.9489px;
+    background-image: url('../images/save-file.svg');
+    background-size:cover;
+    
+}
+
+.diagonal {
+  position: relative;
+  
+}
+
+.diagonal:after {
+    content:'';
+    background-image: url("https://images.unsplash.com/photo-1620928572438-075c466c48da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50%;
+    position: absolute;
+    top ;
+    transform: skewY(-5deg);
+    z-index: -1;
+}
 
 @media screen and (max-width: 768px) {
   .card-image {

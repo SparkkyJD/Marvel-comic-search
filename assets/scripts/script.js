@@ -83,18 +83,25 @@ $('#marvel-search-button').on("click", getMarvelData);
 // ToDo: Add event listener to submit button
 
 
-const galleryItem = document.querySelector(".gallery-item");
+const modalTrigger = document.querySelectorAll(".modal-trigger");
 const showModal = document.querySelector(".modal");
 const modalBackground = document.querySelector(".modal-background");
 
-galleryItem.addEventListener('click', function () {
-    showModal.classList.add('is-active');
-    console.log('hello world');
-  });
+
+// modalTrigger.addEventListener('click', function () {
+//     showModal.classList.add('is-active');
+//     console.log('hello world');
+//   });
   modalBackground.addEventListener('click', function () {
     showModal.classList.remove('is-active');
   });
 
+  modalTrigger.forEach(function(trigger) {
+    trigger.addEventListener('click', function () {
+        showModal.classList.add('is-active');
+        console.log('hello world');
+      });
+  });
 
 
 // $("#search-history-container").on("click", function (event) { //needs div container containing search history (i.e. list of buttons with search term)

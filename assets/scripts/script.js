@@ -121,6 +121,7 @@ let searchResults = [
 // TODO pulling from the marvel api should save the following Object into the above array
 
 let searchResult = {
+    cover:  "",
     title: "",
     publicationDate: "",
     writer: "",

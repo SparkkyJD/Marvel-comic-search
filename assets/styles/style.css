@@ -75,22 +75,31 @@ body {
 opacity: 1;
   }
 
-.
-.diagonal {
+
+/* .diagonal {
   position: relative;
   
 }
 
-.diagonal:after {
+.diagonal::after {
     content:'';
     background-image: url("https://images.unsplash.com/photo-1620928572438-075c466c48da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
     background-repeat: no-repeat;
     background-size: cover;
     height: 50%;
     position: absolute;
-    top ;
     transform: skewY(-5deg);
     z-index: -1;
+} */
+
+
+/* tooltip style */
+.tootip:hover::after {
+  position: absolute;
+  content: attr(data-text);
+  background-color: rgb(227, 224, 224);
+  padding: 1rem;
+  left: 45rem;
 }
 
 @media screen and (max-width: 768px) {

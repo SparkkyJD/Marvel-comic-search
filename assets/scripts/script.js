@@ -110,3 +110,31 @@ galleryItem.addEventListener('click', function () {
 
 // TODo: Protect our APIKeys. Making our Github project private apparently isn't enough (although it could reduce the risk)
 
+//   marvel api object
+
+
+// This array should store any objects created byt the api search results
+let searchResults = [
+
+];
+
+// TODO pulling from the marvel api should save the following Object into the above array
+
+let searchResult = {
+    title: "",
+    publicationDate: "",
+    writer: "",
+    penciler: "",
+    coverArtist: "",
+}
+
+//TODO loop over api response data
+
+//save each response in the above object format
+//example: 
+    // searchResult.title = data.title;
+    // searchResult.title = data.publicationDate;
+    // ect.
+// Then Push() the object to the search results array
+// remember at the beginning of the funtion you'll want to set searchResults = [] so it clears the array every time you run a search.
+

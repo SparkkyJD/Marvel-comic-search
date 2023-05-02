@@ -46,13 +46,48 @@
               <a href="./gallery.html" class="navbar-item">
                 My Longbox
               </a>
-
         </div>
       </div>
     </nav>
     <!-- hero -->
     <section class="hero is-medium is-link">
         <div class="hero-body">
+
+
+          <div class="container">
+            <section class="columns">
+              <div class="column">
+                <div class="card mb-0 columns ">
+                  <div class="card-content">
+                    <p class="title has-text-black pb-2">
+                        Medium hero
+                      </p>
+                      <p class="subtitle has-text-black ">
+                        Medium subtitle
+                      </p>
+                      <form>
+                        <div class="field has-addons">
+                          <div class="control">
+                            <!-- use this id to select the search input in the dom -->
+                            <input
+                              id="marvel-search"
+                              class="input"
+                              type="text"
+                              placeholder="Search"
+                            />
+                          </div>
+                          <div class="control">
+                            <!-- use this id to select the search button in the dom -->
+                            <a id="marvel-search-button" class="button is-danger">
+                              Search
+                            </a>
+                          </div>
+                        </div>
+                      </form>
+                  </div>
+                </div>
+              </div>
+          </div>
 
         </div>
       </section>
@@ -131,15 +166,15 @@
           </div>
         </div>
 
-        <!-- my longbox gallery -->
+        <!-- search results gallery -->
         <p class="title has-text-black-bis is-2 pb-2 has-text-weight-bold">
-          My Longbox:
+          Search Results:
         </p>
         <section class="columns is-flex-wrap-wrap">
           <div class="column is-one-fifth">
-            <div class="card gallery-item">
-                <!-- remove button -->
-                <button class="remove-btn c-btn"><i class="fa-solid fa-trash"></i></i></button>
+            <div class="card search-item">
+                <!-- save button -->
+                <button class="save-btn c-btn"><i class="fa-sharp fa-solid fa-bookmark"></i></button>
               <div class="card-image px-5 pt-5">
                 <figure class="image is-is-2by3">
                   <img
@@ -156,7 +191,6 @@
               </div>
             </div>
           </div>
-          
         </section>
       </div>
     </main>

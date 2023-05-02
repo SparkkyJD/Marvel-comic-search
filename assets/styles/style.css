@@ -1,9 +1,3 @@
-/* body {
-  background-image: url("https://images.unsplash.com/photo-1620928572438-075c466c48da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
-
 #mlb-brand {
   height: 55px;
   max-height: 55px;
@@ -23,58 +17,68 @@
 }
 
 .hero {
-      background-image: url("https://images.unsplash.com/photo-1620928572438-075c466c48da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"); 
- background-repeat: no-repeat;
-  background-size: cover; 
+  background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1620928572438-075c466c48da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero .card {
+  background-color:rgba(255, 255, 255, 0.779)
 }
 
 .show-card-image {
   padding-right: 1.25rem;
 }
 
-.search-item, .gallery-item {
-    position: relative;
+.search-item,
+.gallery-item {
+  position: relative;
 }
 
-.search-item:hover, .gallery-item:hover  {
+.search-item:hover,
+.gallery-item:hover {
   transform: scale(1.02);
   transition: transform 0.1s ease-in-out;
 }
 
-.save-btn, .remove-btn {
-    position: absolute;
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    border: none;
-    background-color: #fff; /* set the background color */
-    color: #000; /* set the icon color */
-    right: 10px;
-    width: 20px;
-    padding:0;
-    z-index:1;
+.save-btn,
+.remove-btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #fff; /* set the background color */
+  color: #000; /* set the icon color */
+  right: 10px;
+  width: 20px;
+  padding: 0;
+  z-index: 1;
 }
 
 .remove-btn {
-    top: 10px;
+  top: 10px;
 }
 
-.save-btn i:hover, .remove-btn i:hover {
-    color: red;
+.save-btn i:hover,
+.remove-btn i:hover {
+  color: red;
 }
 
-.save-btn i, .remove-btn i {
-    font-size: 1.5rem;
+.save-btn i,
+.remove-btn i {
+  font-size: 1.5rem;
 }
 
 .c-btn {
-    opacity: 0;
+  opacity: 0;
 }
 
-.search-item:hover .c-btn, .gallery-item:hover .c-btn  {
-opacity: 1;
-  }
-
+.search-item:hover .c-btn,
+.gallery-item:hover .c-btn {
+  opacity: 1;
+}
 
 /* .diagonal {
   position: relative;
@@ -91,7 +95,6 @@ opacity: 1;
     transform: skewY(-5deg);
     z-index: -1;
 } */
-
 
 /* tooltip style */
 .tooltip:hover::after {

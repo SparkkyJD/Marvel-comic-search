@@ -250,5 +250,20 @@ function modalPopulate () {
 //on hover the content attribute of the tooltip should exuel the var that corresponds to the link being hovered over.
 }
 
+// Just temporary, the dynamically generated buttons will have event listeners to take this
+// placeholder's place
+saveButton.addEventListener('click', addToLocalStorage);
+
+//TODO wiki tooltips
+
+function modalPopulate () {
+// class of .title text content need to equal data-title.value
+// class of .coverUrl src needs to equal data-coverUrl.value
+//ect...
+
+//insert a function that will run a fetch on the writer, penciler, cover artist and save the result into  multiple variables.
+//on hover the content attribute of the tooltip should exuel the var that corresponds to the link being hovered over.
+}
+
 
 

@@ -94,12 +94,10 @@ opacity: 1;
 
 
 /* tooltip style */
-.tootip:hover::after {
-  position: absolute;
+.tooltip:hover::after {
   content: attr(data-text);
-  background-color: rgb(227, 224, 224);
+  background-color: rgb(159, 159, 159);
   padding: 1rem;
-  left: 45rem;
 }
 
 @media screen and (max-width: 768px) {

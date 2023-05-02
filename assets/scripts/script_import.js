@@ -1,27 +1,10 @@
 // ToDo: Get api keys and store them into variables
 
 // ToDo: Use selectors to store the html elements into variables
-var searchInput = document.querySelector('#marvel-search');
-var searchButton = document.querySelector('#marvel-search-button');
-var resultList = document.querySelector('#test-list');
+// var searchInput = document.querySelector('#marvel-search');
+// var searchButton = document.querySelector('#marvel-search-button');
+// var resultList = document.querySelector('#test-list');
 var searchResultEl = document.querySelector('.is-flex-wrap-wrap');
-const modalTrigger = document.querySelectorAll(".modal-trigger");
-const showModal = document.querySelector(".modal");
-const modalBackground = document.querySelector(".modal-background");
-
-
-// modal logic
-
-modalBackground.addEventListener('click', function () {
-    showModal.classList.remove('is-active');
-  });
-
-  modalTrigger.forEach(function(trigger) {
-    trigger.addEventListener('click', function () {
-        showModal.classList.add('is-active');
-        // insert modal function
-      });
-  });
 
 // ToDo: Write a function to obtain the user search on submit
 
@@ -84,55 +67,6 @@ function getMarvelInputData(searchInput) {
 
 
 
-
-// ToDo: Write a function to display the search results onto the page
-
-$('#marvel-search-button').on("click", getMarvelData);
-
-
-
-
-// $("#search-history-container").on("click", function (event) { //needs div container containing search history (i.e. list of buttons with search term)
-//     event.preventDefault();
-//     var clickedButton = event.target
-//     //saved data is repopulated on click of button in search history
-//     if ($(clickedButton).hasClass("button")) {
-//         searchInput = $(clickedButton).data("searchInput");
-//         getMarvelInputData(searchInput);
-//     }
-// });
-
-
-// TODo: Protect our APIKeys. Making our Github project private apparently isn't enough (although it could reduce the risk)
-
-//   marvel api object
-
-
-// This array should store any objects created byt the api search results
-let searchResults = [
-
-];
-
-// TODO pulling from the marvel api should save the following Object into the above array
-
-let searchResult = {
-    cover:  "",
-    title: "",
-    publicationDate: "",
-    writer: "",
-    penciler: "",
-    coverArtist: "",
-}
-
-//TODO loop over api response data
-
-//save each response in the above object format
-//example: 
-    // searchResult.title = data.title;
-    // searchResult.title = data.publicationDate;
-    // ect.
-// Then Push() the object to the search results array
-// remember at the beginning of the funtion you'll want to set searchResults = [] so it clears the array every time you run a search.
 
 // ToDo: Write a function to display the search results onto the page
 
@@ -216,6 +150,16 @@ function displayResults(result) {
     }
 }
 
+// ToDo: Create a function to display a modal asking the user for location parameters
+// then pass those parameters into the api call
+
+// ToDo: Write a function to make the google maps api call
+// using user inputted location parameters
+
+// ToDo: Find some way to incorporate local storage into the application
+// maybe by storing the user's location? Or maybe by storing their previous
+// searches and displaying them to the page for shortcut links?
+
 // Just temporary, this query selector will be replaced by the dynamically generated
 // cardSaveButtons
 var saveButton = document.querySelector('.save-btn');
@@ -239,16 +183,62 @@ function addToLocalStorage() {
 // placeholder's place
 saveButton.addEventListener('click', addToLocalStorage);
 
-//TODO wiki tooltips
+// ToDo: Add event listener to submit button
 
-function modalPopulate () {
-// class of .title text content need to equal data-title.value
-// class of .coverUrl src needs to equal data-coverUrl.value
-//ect...
 
-//insert a function that will run a fetch on the writer, penciler, cover artist and save the result into  multiple variables.
-//on hover the content attribute of the tooltip should exuel the var that corresponds to the link being hovered over.
+// const galleryItem = document.querySelector(".gallery-item");
+// const showModal = document.querySelector(".modal");
+// const modalBackground = document.querySelector(".modal-background");
+
+// galleryItem.addEventListener('click', function () {
+//     showModal.classList.add('is-active');
+//     console.log('hello world');
+//   });
+//   modalBackground.addEventListener('click', function () {
+//     showModal.classList.remove('is-active');
+//   });
+
+
+
+// $("#search-history-container").on("click", function (event) { //needs div container containing search history (i.e. list of buttons with search term)
+//     event.preventDefault();
+//     var clickedButton = event.target
+//     //saved data is repopulated on click of button in search history
+//     if ($(clickedButton).hasClass("button")) {
+//         searchInput = $(clickedButton).data("searchInput");
+//         getMarvelInputData(searchInput);
+//     }
+// });
+
+
+// TODo: Protect our APIKeys. Making our Github project private apparently isn't enough (although it could reduce the risk)
+
+//   marvel api object
+
+
+// This array should store any objects created byt the api search results
+let searchResults = [
+
+];
+
+// TODO pulling from the marvel api should save the following Object into the above array
+
+let searchResult = {
+    cover:  "",
+    title: "",
+    publicationDate: "",
+    writer: "",
+    penciler: "",
+    coverArtist: "",
 }
 
+//TODO loop over api response data
 
+//save each response in the above object format
+//example: 
+    // searchResult.title = data.title;
+    // searchResult.title = data.publicationDate;
+    // ect.
+// Then Push() the object to the search results array
+// remember at the beginning of the funtion you'll want to set searchResults = [] so it clears the array every time you run a search.
 

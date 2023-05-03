@@ -205,7 +205,7 @@ function getMarvelInputData(searchInput) {
       
           console.log("Search Results Array ", searchResultsArray);
        
-          displayResults(result);
+          displayResults(result, searchResultsArray);
           console.log(searchResultsArray);
           });
 
@@ -214,7 +214,7 @@ function getMarvelInputData(searchInput) {
 $('#marvel-search-button').on("click", getMarvelData);
 
 // search gallery logic
-function displayResults(result) {
+function displayResults(result, searchResultsArray) {
     console.log(result.data.results);
     // looping through and creating cards based on the result length
     for (var i = 0; i < result.data.results.length; i++) {
@@ -253,11 +253,12 @@ function displayResults(result) {
 
         var itemCard = document.createElement('div');
         itemCard.classList.add('card', 'search-item', 'modal-trigger');
-        itemCard.setAttribute('data-title', result.data.results[i].title);
-        itemCard.setAttribute('data-penciler', '');
-        itemCard.setAttribute('data-coverArtist', '');
-        itemCard.setAttribute('data-description', '');
-        itemCard.setAttribute('data-published', result.data.results[i].dates[0].date);
+        itemCard.setAttribute('data-title', searchResultsArray[i].title);
+        itemCard.setAttribute('data-penciler', searchResultsArray[i].penciler);
+        itemCard.setAttribute('data-coverArtist', searchResultsArray[i].coverArtist);
+        itemCard.setAttribute('data-description', searchResultsArray[i].description);
+        itemCard.setAttribute('data-published', searchResultsArray[i].publicationDate);
+        itemCard.setAttribute('data-writer', searchResultsArray[i].writer);
 
         itemCard.addEventListener('click', function(event) {
                 modalPopulate(event);

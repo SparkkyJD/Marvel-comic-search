@@ -1,8 +1,8 @@
 // ToDo: Get api keys and store them into variables
 
 // ToDo: Use selectors to store the html elements into variables
-var searchInput = document.querySelector('#marvel-search');
-var searchButton = document.querySelector('#marvel-search-button');
+// var searchInput = document.querySelector('#marvel-search');
+// var searchButton = document.querySelector('#marvel-search-button');
 var resultList = document.querySelector('#test-list');
 var searchResultEl = document.querySelector('.is-flex-wrap-wrap');
 const modalTrigger = document.querySelectorAll(".modal-trigger");
@@ -186,7 +186,12 @@ function displayResults(result) {
         cardSaveButton.classList.add('save-btn', 'c-btn');
 
         var itemCard = document.createElement('div');
-        itemCard.classList.add('card', 'search-item');
+        itemCard.classList.add('card', 'search-item', 'modal-trigger');
+        itemCard.setAttribute('data-title', result.data.results[i].title);
+        itemCard.setAttribute('data-penciler', '');
+        itemCard.setAttribute('data-coverArtist', '');
+        itemCard.setAttribute('data-published', result.data.results[i].dates[0].date);
+        
 
         var resultCard = document.createElement('div');
         resultCard.classList.add('column', 'is-one-fifth');
@@ -196,14 +201,18 @@ function displayResults(result) {
         titleP.textContent = result.data.results[i].title;
         if (result.data.results[i].images.length < 1) {
             imgTag.src = './assets/images/sorry-cannot-be-found.png';
+            itemCard.setAttribute('data-coverURL', imgTag.src);
         } else {
             imgTag.src = result.data.results[i].images[0].path + '.jpg';
+            itemCard.setAttribute('data-coverURL', imgTag.src);
         }
 
         if (result.data.results[i].creators.available < 1) {
             subTitleP.textContent = 'Creator not credited';
+            itemCard.setAttribute('data-writer', 'Creator not credited');
         } else {
             subTitleP.textContent = result.data.results[i].creators.items[0].name;
+            itemCard.setAttribute('data-writer', subTitleP.textContent);
         }
 
         // Appending to match the demo card structure

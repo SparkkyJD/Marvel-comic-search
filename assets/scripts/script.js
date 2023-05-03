@@ -29,6 +29,7 @@ function modalLogic () {
 
 //TODO wiki tooltips
 
+
 function modalPopulate (event) {
     mCover = document.querySelector(".modal-cover");
     mTitle = document.querySelector(".modal-title");

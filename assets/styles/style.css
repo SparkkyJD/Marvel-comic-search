@@ -34,6 +34,7 @@
 .search-item,
 .gallery-item {
   position: relative;
+  height: 100%;
 }
 
 .search-item:hover,
@@ -52,6 +53,7 @@
   background-color: #fff; /* set the background color */
   color: #000; /* set the icon color */
   right: 10px;
+  top:10px;
   width: 20px;
   padding: 0;
   z-index: 1;

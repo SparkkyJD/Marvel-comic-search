@@ -53,7 +53,7 @@ function getMarvelInputData(searchInput) {
     var characters = $("#marvel-search").val();
     var year = $("#marvel-search").val();
     var marvelQuery = `?limit=${limit}`;
-    var marvelURL = `${marvelBaseURL}${marvelQuery}${auth}`;
+    
 
     //allows multiple paramaters in one search input field
 
@@ -69,6 +69,9 @@ function getMarvelInputData(searchInput) {
         //replace with modal
         return console.log("Error: You need to search a character, title, and/or year of issue");
     }
+    var marvelURL = `${marvelBaseURL}${marvelQuery}${auth}`;
+
+
 
 //     if(title) {
 //         marvelQuery += `&titleStartsWith=${title}`;
@@ -138,10 +141,10 @@ function getMarvelInputData(searchInput) {
             }
       
           console.log("Search Results Array ", searchResultsArray);
-       
+          displayResults(result);
           });
       }
-            displayResults(result);
+           
 
 
 
@@ -195,7 +198,7 @@ let searchResult = {
 
 // ToDo: Write a function to display the search results onto the page
 
-$('#marvel-search-button').on("click", getMarvelData);
+
 
 // Function to dynamically add search result cards based on search result length
 // All that is needed for this now is to add the result data in their corresponding spots

@@ -73,21 +73,6 @@ function getMarvelInputData(searchInput) {
 
 
 
-//     if(title) {
-//         marvelQuery += `&titleStartsWith=${title}`;
-//     }
-
-//     if(characters) {
-//         marvelQuery += `&characters=${characters}`;
-//     }
-
-//     if(year) {
-//         marvelQuery += `&startYear=${year}`;
-//     }
-// TODO: replace with a modal 
-//     if(!year & !title & !characters) {
-//         return console.log("Error: You need to search a character, title, and/or year of issue");
-//     }
     
     console.log("Query ", marvelURL);
 

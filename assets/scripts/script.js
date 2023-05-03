@@ -9,6 +9,7 @@ const showModal = document.querySelector(".modal");
 const modalBackground = document.querySelector(".modal-background");
 const catSelect = document.querySelector("#search-category");
 const modalTrigger = document.querySelectorAll(".modal-trigger");
+const saveButton = document.querySelectorAll('.save-btn');
 
 
 // modal logic
@@ -25,6 +26,35 @@ function modalLogic () {
           });
       });
 };
+
+
+function addToLocalStorage() {
+    var storedCollection = JSON.parse(localStorage.getItem('userCollection')) || [];
+    storedCollection.push(collectionEntry);
+    localStorage.setItem('userCollection', JSON.stringify(storedCollection));
+}
+
+var collectionEntry = {
+    writer: "",
+    datePublished: "",
+    title: "",
+    penciller: "",
+    coverArtist: "",
+    coverUrl: ""
+  };
+
+  function addToCollection (event) {
+    event.stopPropagation();
+    const parent = event.target.parentNode.parentNode;
+    collectionEntry.writer = parent.getAttribute("data-writer");
+    collectionEntry.datePublished = parent.getAttribute("data-published");
+    collectionEntry.title = parent.getAttribute("data-title");
+    collectionEntry.penciler = parent.getAttribute("data-penciler");
+    collectionEntry.coverArtist = parent.getAttribute("data-coverArtist");
+    collectionEntry.coverUrl = parent.getAttribute("data-coverUrl");
+    addToLocalStorage();
+  }
+
 
 // and call that function on submit button click
 
@@ -163,6 +193,12 @@ function displayResults(result) {
         iTagEl.classList.add('fa-sharp', 'fa-solid', 'fa-bookmark');
 
         var cardSaveButton = document.createElement('button');
+
+        cardSaveButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            addToCollection(event);
+          });
+
         cardSaveButton.classList.add('save-btn', 'c-btn');
 
         var itemCard = document.createElement('div');
@@ -217,28 +253,9 @@ function displayResults(result) {
     }
 }
 
-// Just temporary, this query selector will be replaced by the dynamically generated
-// cardSaveButtons
-var saveButton = document.querySelector('.save-btn');
 
-var collectionEntry = {
-    writer: "",
-    datePublished: "",
-    title: "",
-    penciller: "",
-    coverArtist: ""
-  };
 
-function addToLocalStorage() {
-    var storedCollection = JSON.parse(localStorage.getItem('userCollection')) || [];
-    collectionEntry.index++; 
-    storedCollection.push(collectionEntry);
-    localStorage.setItem('userCollection', JSON.stringify(storedCollection));
-}
 
-// Just temporary, the dynamically generated buttons will have event listeners to take this
-// placeholder's place
-saveButton.addEventListener('click', addToLocalStorage);
 
 //TODO wiki tooltips
 
@@ -250,10 +267,6 @@ function modalPopulate () {
 //insert a function that will run a fetch on the writer, penciler, cover artist and save the result into  multiple variables.
 //on hover the content attribute of the tooltip should exuel the var that corresponds to the link being hovered over.
 }
-
-// Just temporary, the dynamically generated buttons will have event listeners to take this
-// placeholder's place
-saveButton.addEventListener('click', addToLocalStorage);
 
 //TODO wiki tooltips
 

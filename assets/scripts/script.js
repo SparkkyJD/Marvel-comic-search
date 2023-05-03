@@ -130,47 +130,6 @@ function getMarvelInputData(searchInput) {
 
       }
 
-
-
-
-
-
-// ToDo: Write a function to display the search results onto the page
-
-$('#marvel-search-button').on("click", getMarvelData);
-
-
-
-
-// $("#search-history-container").on("click", function (event) { //needs div container containing search history (i.e. list of buttons with search term)
-//     event.preventDefault();
-//     var clickedButton = event.target
-//     //saved data is repopulated on click of button in search history
-//     if ($(clickedButton).hasClass("button")) {
-//         searchInput = $(clickedButton).data("searchInput");
-//         getMarvelInputData(searchInput);
-//     }
-// });
-
-
-// TODo: Protect our APIKeys. Making our Github project private apparently isn't enough (although it could reduce the risk)
-
-//   marvel api object
-
-
-// This array should store any objects created byt the api search results
-
-// TODO pulling from the marvel api should save the following Object into the above array
-
-let searchResult = {
-    cover:  "",
-    title: "",
-    publicationDate: "",
-    writer: "",
-    penciler: "",
-    coverArtist: "",
-}
-
 $('#marvel-search-button').on("click", getMarvelData);
 
 // Function to dynamically add search result cards based on search result length
@@ -254,9 +213,6 @@ function displayResults(result) {
         resultCard.appendChild(itemCard);
         searchResultEl.appendChild(resultCard);
 
-        // Need to figure out how to differentiate the generated save buttons
-        // so that each button will save only its corresponding content
-        // cardSaveButton.addEventListener('click', addToLocalStorage);
         modalLogic();
     }
 }

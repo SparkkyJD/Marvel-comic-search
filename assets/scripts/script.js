@@ -8,6 +8,7 @@ var searchResultEl = document.querySelector('.is-flex-wrap-wrap');
 const modalTrigger = document.querySelectorAll(".modal-trigger");
 const showModal = document.querySelector(".modal");
 const modalBackground = document.querySelector(".modal-background");
+const catSelect = document.querySelector("#search-category");
 
 
 // modal logic
@@ -36,7 +37,6 @@ function getMarvelData(event) {
     var searchInput = $('#marvel-search').val();
 
     getMarvelInputData(searchInput);
-
 }
 
 function getMarvelInputData(searchInput) {
@@ -56,21 +56,35 @@ function getMarvelInputData(searchInput) {
     var marvelURL = `${marvelBaseURL}${marvelQuery}${auth}`;
 
     //allows multiple paramaters in one search input field
-    if(title) {
+
+    //****NEW SEARCH PARAM LOGIC
+    var searchParameter = catSelect.value
+    if(searchParameter === "Title") {
         marvelQuery += `&titleStartsWith=${title}`;
-    }
-
-    if(characters) {
+    } else if (searchParameter === "Character") {
         marvelQuery += `&characters=${characters}`;
-    }
-
-    if(year) {
+    } else if (searchParameter === "Year") {
         marvelQuery += `&startYear=${year}`;
-    }
-//TODO: replace with a modal 
-    if(!year & !title & !characters) {
+    } else {
+        //replace with modal
         return console.log("Error: You need to search a character, title, and/or year of issue");
     }
+
+//     if(title) {
+//         marvelQuery += `&titleStartsWith=${title}`;
+//     }
+
+//     if(characters) {
+//         marvelQuery += `&characters=${characters}`;
+//     }
+
+//     if(year) {
+//         marvelQuery += `&startYear=${year}`;
+//     }
+// TODO: replace with a modal 
+//     if(!year & !title & !characters) {
+//         return console.log("Error: You need to search a character, title, and/or year of issue");
+//     }
     
     console.log("Query ", marvelURL);
 

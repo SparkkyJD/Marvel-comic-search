@@ -76,7 +76,7 @@ function addToLocalStorage() {
     event.stopPropagation();
     const parent = event.target.parentNode.parentNode;
     collectionEntry.writer = parent.getAttribute("data-writer");
-    collectionEntry.datePublished = parent.getAttribute("data-published");
+    collectionEntry.datePublished = parent.getAttribute("data-datePublished");
     collectionEntry.title = parent.getAttribute("data-title");
     collectionEntry.penciler = parent.getAttribute("data-penciler");
     collectionEntry.coverArtist = parent.getAttribute("data-coverArtist");
@@ -96,10 +96,10 @@ function addToLocalStorage() {
   function removeFromCollection(event) {
     event.stopPropagation();
       
-    const parent = event.target.parentNode.parentNode.parentNode;
+    const parent = event.target.parentNode.parentNode;
     const collectionEntry = {
       writer: parent.getAttribute("data-writer"),
-      datePublished: parent.getAttribute("data-published"),
+      datePublished: parent.getAttribute("data-datePublished"),
       title: parent.getAttribute("data-title"),
       penciler: parent.getAttribute("data-penciler"),
       coverArtist: parent.getAttribute("data-coverArtist"),
@@ -173,9 +173,9 @@ function getMarvelInputData(searchInput) {
               var formattedDate = `${date.getDate().toString().padStart(2,'0')}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getFullYear()}`;
       
               let searchResult = {
-                cover: thumbnail,
+                coverUrl: thumbnail,
                 title: titleEl,
-                publicationDate: formattedDate,
+                datePublished: formattedDate,
                 writer: "",
                 penciler: "",
                 coverArtist: "",
@@ -257,7 +257,7 @@ function displayResults(result, searchResultsArray) {
         itemCard.setAttribute('data-penciler', searchResultsArray[i].penciler);
         itemCard.setAttribute('data-coverArtist', searchResultsArray[i].coverArtist);
         itemCard.setAttribute('data-description', searchResultsArray[i].description);
-        itemCard.setAttribute('data-published', searchResultsArray[i].publicationDate);
+        itemCard.setAttribute('data-datePublished', searchResultsArray[i].datePublished);
         itemCard.setAttribute('data-writer', searchResultsArray[i].writer);
 
         itemCard.addEventListener('click', function(event) {
@@ -274,10 +274,10 @@ function displayResults(result, searchResultsArray) {
         titleP.textContent = result.data.results[i].title;
         if (result.data.results[i].images.length < 1) {
             imgTag.src = './assets/images/sorry-cannot-be-found.png';
-            itemCard.setAttribute('data-coverURL', imgTag.src);
+            itemCard.setAttribute('data-coverUrl', imgTag.src);
         } else {
             imgTag.src = result.data.results[i].images[0].path + '.jpg';
-            itemCard.setAttribute('data-coverURL', imgTag.src);
+            itemCard.setAttribute('data-coverUrl', imgTag.src);
         }
 
         if (result.data.results[i].creators.available < 1) {
@@ -355,10 +355,10 @@ if (window.location.href.includes("gallery.html")) {
         var itemCard = document.createElement('div');
         itemCard.classList.add('card', 'gallery-item', 'modal-trigger');
         itemCard.setAttribute('data-title', storedCollection[i].title);
-        itemCard.setAttribute('data-penciler', '');
-        itemCard.setAttribute('data-coverArtist', '');
-        itemCard.setAttribute('data-description', '');
-        itemCard.setAttribute('data-published', storedCollection[i].datePublished);
+        itemCard.setAttribute('data-penciler', storedCollection[i].penciler);
+        itemCard.setAttribute('data-coverArtist', storedCollection[i].coverArtist);
+        itemCard.setAttribute('data-description', storedCollection[i].description);
+        itemCard.setAttribute('data-datePublished', storedCollection[i].datePublished);
         
         itemCard.addEventListener('click', function(event) {
                 modalPopulate(event);
@@ -373,10 +373,10 @@ if (window.location.href.includes("gallery.html")) {
         titleP.textContent = storedCollection[i].title;
         if (storedCollection[i].coverUrl.length < 1) {
             imgTag.src = './assets/images/sorry-cannot-be-found.png';
-            itemCard.setAttribute('data-coverURL', storedCollection[i].coverUrl);
+            itemCard.setAttribute('data-coverUrl', storedCollection[i].coverUrl);
         } else {
             imgTag.src = storedCollection[i].coverUrl;
-            itemCard.setAttribute('data-coverURL', imgTag.src);
+            itemCard.setAttribute('data-coverUrl', imgTag.src);
         }
 
         if (storedCollection[i].writer.available < 1) {

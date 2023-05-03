@@ -5,33 +5,112 @@
 // var searchButton = document.querySelector('#marvel-search-button');
 var resultList = document.querySelector('#test-list');
 var searchResultEl = document.querySelector('.is-flex-wrap-wrap');
-const modalTrigger = document.querySelectorAll(".modal-trigger");
 const showModal = document.querySelector(".modal");
 const modalBackground = document.querySelector(".modal-background");
 const catSelect = document.querySelector("#search-category");
+const modalTrigger = document.querySelectorAll(".modal-trigger");
+const saveButton = document.querySelectorAll('.save-btn');
 
 
 // modal logic
-
-modalBackground.addEventListener('click', function () {
-    showModal.classList.remove('is-active');
-  });
-
-  modalTrigger.forEach(function(trigger) {
-    trigger.addEventListener('click', function () {
-        showModal.classList.add('is-active');
-        // insert modal function
+function modalLogic () {
+    //duplicate query selector allows both static and dynamic elements to have event listener
+    const modalTrigger = document.querySelectorAll(".modal-trigger");
+    modalBackground.addEventListener('click', function () {
+        showModal.classList.remove('is-active');
       });
-  });
+    //   modalTrigger.forEach(function(trigger) {
+    //     trigger.addEventListener('click', function (event) {
+    //         modalPopulate(event);
+    //         showModal.classList.add('is-active');
+    //       });
+    //   });
+};
 
-// ToDo: Write a function to obtain the user search on submit
+//TODO wiki tooltips
+
+function modalPopulate (event) {
+    mCover = document.querySelector(".modal-cover");
+    mTitle = document.querySelector(".modal-title");
+    mWriter = document.querySelector(".modal-writer");
+    mPenciler = document.querySelector(".modal-penciler");
+    mDescription = document.querySelector(".modal-description");
+    mCoverArtist = document.querySelector(".modal-cover-artist");
+    mDate = document.querySelector(".modal-published");
+    
+    mWriter.textContent = event.target.getAttribute("data-writer");
+    mDate.textContent = event.target.getAttribute("data-published");
+    mTitle.textContent = event.target.getAttribute("data-title");
+    mPenciler.textContent = event.target.getAttribute("data-penciler");
+    mCoverArtist.textContent = event.target.getAttribute("data-coverartist");
+    mCover.src = event.target.getAttribute("data-coverurl");
+    //insert a function that will run a fetch on the writer, penciler, cover artist and save the result into  multiple variables.
+    //on hover the content attribute of the tooltip should exuel the var that corresponds to the link being hovered over.
+    }
+
+var collectionEntry = {
+    writer: "",
+    datePublished: "",
+    title: "",
+    penciler: "",
+    coverArtist: "",
+    coverUrl: ""
+  };
+
+// save button logic
+function addToLocalStorage() {
+    var storedCollection = JSON.parse(localStorage.getItem('userCollection')) || [];
+    for (i = 0 ; i < storedCollection.length; i++) {
+        if (JSON.stringify(collectionEntry) === JSON.stringify(storedCollection[i])) {
+            console.log("you already saved this item");
+            return;
+        }
+    }
+    storedCollection.push(collectionEntry);
+    localStorage.setItem('userCollection', JSON.stringify(storedCollection));
+}
 
 
-// and call that function on submit button click
 
+  function addToCollection (event) {
+    event.stopPropagation();
+    const parent = event.target.parentNode.parentNode;
+    collectionEntry.writer = parent.getAttribute("data-writer");
+    collectionEntry.datePublished = parent.getAttribute("data-published");
+    collectionEntry.title = parent.getAttribute("data-title");
+    collectionEntry.penciler = parent.getAttribute("data-penciler");
+    collectionEntry.coverArtist = parent.getAttribute("data-coverArtist");
+    collectionEntry.coverUrl = parent.getAttribute("data-coverUrl");
+    addToLocalStorage();
+  }
 
-// ToDo: Write a function that takes the user search and makes an api call based on it
+  //trash button logic
+  function removeFromLocalStorage(collectionEntry) {
+    var storedCollection = JSON.parse(localStorage.getItem('userCollection')) || [];
+    storedCollection = storedCollection.filter(function(i) {
+      return JSON.stringify(i) !== JSON.stringify(collectionEntry);
+    });
+    return storedCollection;
+  }
+  
+  function removeFromCollection(event) {
+    event.stopPropagation();
+      
+    const parent = event.target.parentNode.parentNode.parentNode;
+    const collectionEntry = {
+      writer: parent.getAttribute("data-writer"),
+      datePublished: parent.getAttribute("data-published"),
+      title: parent.getAttribute("data-title"),
+      penciler: parent.getAttribute("data-penciler"),
+      coverArtist: parent.getAttribute("data-coverArtist"),
+      coverUrl: parent.getAttribute("data-coverUrl")
+    };
+    const storedCollection = removeFromLocalStorage(collectionEntry);
+    localStorage.setItem('userCollection', JSON.stringify(storedCollection));
+    parent.remove();
+  }
 
+// marvel api logic
 function getMarvelData(event) {
     event.preventDefault(); //ensures input is processed
     var searchInput = $('#marvel-search').val();
@@ -53,7 +132,7 @@ function getMarvelInputData(searchInput) {
     var characters = $("#marvel-search").val();
     var year = $("#marvel-search").val();
     var marvelQuery = `?limit=${limit}`;
-    var marvelURL = `${marvelBaseURL}${marvelQuery}${auth}`;
+
 
     //allows multiple paramaters in one search input field
 
@@ -70,21 +149,7 @@ function getMarvelInputData(searchInput) {
         return console.log("Error: You need to search a character, title, and/or year of issue");
     }
 
-//     if(title) {
-//         marvelQuery += `&titleStartsWith=${title}`;
-//     }
-
-//     if(characters) {
-//         marvelQuery += `&characters=${characters}`;
-//     }
-
-//     if(year) {
-//         marvelQuery += `&startYear=${year}`;
-//     }
-// TODO: replace with a modal 
-//     if(!year & !title & !characters) {
-//         return console.log("Error: You need to search a character, title, and/or year of issue");
-//     }
+    var marvelURL = `${marvelBaseURL}${marvelQuery}${auth}`;
     
     console.log("Query ", marvelURL);
 
@@ -114,6 +179,7 @@ function getMarvelInputData(searchInput) {
                 writer: "",
                 penciler: "",
                 coverArtist: "",
+                description: ""
               };
       
              
@@ -139,66 +205,15 @@ function getMarvelInputData(searchInput) {
       
           console.log("Search Results Array ", searchResultsArray);
        
+          displayResults(result);
+          console.log(searchResultsArray);
           });
+
       }
-            displayResults(result);
-
-
-
-
-
-// ToDo: Write a function to display the search results onto the page
 
 $('#marvel-search-button').on("click", getMarvelData);
 
-
-
-
-// $("#search-history-container").on("click", function (event) { //needs div container containing search history (i.e. list of buttons with search term)
-//     event.preventDefault();
-//     var clickedButton = event.target
-//     //saved data is repopulated on click of button in search history
-//     if ($(clickedButton).hasClass("button")) {
-//         searchInput = $(clickedButton).data("searchInput");
-//         getMarvelInputData(searchInput);
-//     }
-// });
-
-
-// TODo: Protect our APIKeys. Making our Github project private apparently isn't enough (although it could reduce the risk)
-
-//   marvel api object
-
-
-// This array should store any objects created byt the api search results
-
-// TODO pulling from the marvel api should save the following Object into the above array
-
-let searchResult = {
-    cover:  "",
-    title: "",
-    publicationDate: "",
-    writer: "",
-    penciler: "",
-    coverArtist: "",
-}
-
-//TODO loop over api response data
-
-//save each response in the above object format
-//example: 
-    // searchResult.title = data.title;
-    // searchResult.title = data.publicationDate;
-    // ect.
-// Then Push() the object to the search results array
-// remember at the beginning of the funtion you'll want to set searchResults = [] so it clears the array every time you run a search.
-
-// ToDo: Write a function to display the search results onto the page
-
-$('#marvel-search-button').on("click", getMarvelData);
-
-// Function to dynamically add search result cards based on search result length
-// All that is needed for this now is to add the result data in their corresponding spots
+// search gallery logic
 function displayResults(result) {
     console.log(result.data.results);
     // looping through and creating cards based on the result length
@@ -228,6 +243,12 @@ function displayResults(result) {
         iTagEl.classList.add('fa-sharp', 'fa-solid', 'fa-bookmark');
 
         var cardSaveButton = document.createElement('button');
+
+        cardSaveButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            addToCollection(event);
+          });
+
         cardSaveButton.classList.add('save-btn', 'c-btn');
 
         var itemCard = document.createElement('div');
@@ -235,7 +256,13 @@ function displayResults(result) {
         itemCard.setAttribute('data-title', result.data.results[i].title);
         itemCard.setAttribute('data-penciler', '');
         itemCard.setAttribute('data-coverArtist', '');
+        itemCard.setAttribute('data-description', '');
         itemCard.setAttribute('data-published', result.data.results[i].dates[0].date);
+
+        itemCard.addEventListener('click', function(event) {
+                modalPopulate(event);
+                showModal.classList.add('is-active');
+        })
         
 
         var resultCard = document.createElement('div');
@@ -278,60 +305,114 @@ function displayResults(result) {
         resultCard.appendChild(itemCard);
         searchResultEl.appendChild(resultCard);
 
-        // Need to figure out how to differentiate the generated save buttons
-        // so that each button will save only its corresponding content
-        // cardSaveButton.addEventListener('click', addToLocalStorage);
+        modalLogic();
     }
 }
 
-// Just temporary, this query selector will be replaced by the dynamically generated
-// cardSaveButtons
-var saveButton = document.querySelector('.save-btn');
+// my collection logic
+if (window.location.href.includes("gallery.html")) {
+    displayGallery();
+  }
 
-var collectionEntry = {
-    writer: "",
-    datePublished: "",
-    title: "",
-    penciller: "",
-    coverArtist: ""
-  };
-
-function addToLocalStorage() {
+  function displayGallery(result) {
     var storedCollection = JSON.parse(localStorage.getItem('userCollection')) || [];
-    collectionEntry.index++; 
-    storedCollection.push(collectionEntry);
-    localStorage.setItem('userCollection', JSON.stringify(storedCollection));
+    // looping through and creating cards based on the result length
+    for (var i = 0; i < storedCollection.length; i++) {
+        var subTitleP = document.createElement('p');
+        subTitleP.classList.add('subtitle', 'is-6');
+
+        var titleP = document.createElement('p');
+        titleP.classList.add('title', 'is-5', 'pb-2');
+
+        var contentDiv = document.createElement('div');
+        contentDiv.classList.add('content');
+
+        var cardContent = document.createElement('div');
+        cardContent.classList.add('card-content', 'pt-3');
+
+        var imgTag = document.createElement('img');
+        imgTag.src = ''; 
+
+        var cardFigure = document.createElement('figure');
+        cardFigure.classList.add('image', 'is-is-2by3');
+
+        var cardImage = document.createElement('div');
+        cardImage.classList.add('card-image', 'px-5', 'pt-5');
+
+        var iTagEl = document.createElement('i');
+        iTagEl.classList.add('fa-solid', 'fa-trash');
+
+        var cardTrashButton = document.createElement('button');
+
+        cardTrashButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            removeFromCollection(event);
+          });
+
+        cardTrashButton.classList.add('save-btn', 'c-btn');
+
+        var itemCard = document.createElement('div');
+        itemCard.classList.add('card', 'gallery-item', 'modal-trigger');
+        itemCard.setAttribute('data-title', storedCollection[i].title);
+        itemCard.setAttribute('data-penciler', '');
+        itemCard.setAttribute('data-coverArtist', '');
+        itemCard.setAttribute('data-description', '');
+        itemCard.setAttribute('data-published', storedCollection[i].datePublished);
+        
+        itemCard.addEventListener('click', function(event) {
+                modalPopulate(event);
+                showModal.classList.add('is-active');
+        });
+
+        var resultCard = document.createElement('div');
+        resultCard.classList.add('column', 'is-one-fifth');
+
+        // Still need to finish generating content for the modal
+        // But this is for the data on the result cards
+        titleP.textContent = storedCollection[i].title;
+        if (storedCollection[i].coverUrl.length < 1) {
+            imgTag.src = './assets/images/sorry-cannot-be-found.png';
+            itemCard.setAttribute('data-coverURL', storedCollection[i].coverUrl);
+        } else {
+            imgTag.src = storedCollection[i].coverUrl;
+            itemCard.setAttribute('data-coverURL', imgTag.src);
+        }
+
+        if (storedCollection[i].writer.available < 1) {
+            subTitleP.textContent = 'Creator not credited';
+            itemCard.setAttribute('data-writer', 'Creator not credited');
+        } else {
+            subTitleP.textContent = storedCollection[i].writer;
+            itemCard.setAttribute('data-writer', subTitleP.textContent);
+        }
+
+        // Appending to match the demo card structure
+        contentDiv.appendChild(titleP);
+        contentDiv.appendChild(subTitleP);
+        cardContent.appendChild(contentDiv);
+
+        cardFigure.appendChild(imgTag);
+        cardImage.appendChild(cardFigure);
+
+        cardTrashButton.appendChild(iTagEl);
+
+        itemCard.appendChild(cardTrashButton);
+
+        itemCard.appendChild(cardImage);
+        itemCard.appendChild(cardContent);
+
+        resultCard.appendChild(itemCard);
+        searchResultEl.appendChild(resultCard);
+
+        modalLogic();
+    }
 }
 
-// Just temporary, the dynamically generated buttons will have event listeners to take this
-// placeholder's place
-saveButton.addEventListener('click', addToLocalStorage);
 
-//TODO wiki tooltips
 
-function modalPopulate () {
-// class of .title text content need to equal data-title.value
-// class of .coverUrl src needs to equal data-coverUrl.value
-//ect...
 
-//insert a function that will run a fetch on the writer, penciler, cover artist and save the result into  multiple variables.
-//on hover the content attribute of the tooltip should exuel the var that corresponds to the link being hovered over.
-}
 
-// Just temporary, the dynamically generated buttons will have event listeners to take this
-// placeholder's place
-saveButton.addEventListener('click', addToLocalStorage);
 
-//TODO wiki tooltips
-
-function modalPopulate () {
-// class of .title text content need to equal data-title.value
-// class of .coverUrl src needs to equal data-coverUrl.value
-//ect...
-
-//insert a function that will run a fetch on the writer, penciler, cover artist and save the result into  multiple variables.
-//on hover the content attribute of the tooltip should exuel the var that corresponds to the link being hovered over.
-}
 
 
 

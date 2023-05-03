@@ -92,9 +92,57 @@ function getMarvelInputData(searchInput) {
         .then((response) => response.json())
         .then(result => {
             console.log("Marvel Data ", result);
+            let searchResultsArray = [];
+     
+
+            for (var i = 0; i < result.data.results.length; i++) {
+              var thumbnail =
+                result.data.results[i].thumbnail.path +
+                "." +
+                result.data.results[i].thumbnail.extension;
+      
+              var titleEl = result.data.results[i].title;
+              var isoStringDate = result.data.results[i].dates[0].date;
+              var date = new Date(isoStringDate);
+              
+              var formattedDate = `${date.getDate().toString().padStart(2,'0')}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getFullYear()}`;
+      
+              let searchResult = {
+                cover: thumbnail,
+                title: titleEl,
+                publicationDate: formattedDate,
+                writer: "",
+                penciler: "",
+                coverArtist: "",
+              };
+      
+             
+              searchResultsArray.push(searchResult); //completed array with cover, title, pub
+      
+              var creatorItems = result.data.results[i].creators.items;
+      
+              if (creatorItems) {
+                for (var j = 0; j < creatorItems.length; j++) {
+                  var desiredItem = creatorItems[j];
+                  var name = desiredItem.name;
+                  var role = desiredItem.role;
+        
+                  if (role === "writer") {
+                    searchResult.writer = name;
+                  } else if (role === "penciler" || "penciller") {
+                      searchResult.penciler = name;
+                  } else if (role === "penciler (cover)" || "penciller (cover)")
+                      searchResult.coverArtist = name;
+                }
+              }
+            }
+      
+          console.log("Search Results Array ", searchResultsArray);
+       
+          });
+      }
             displayResults(result);
-        })
-}
+
 
 
 
@@ -123,9 +171,6 @@ $('#marvel-search-button').on("click", getMarvelData);
 
 
 // This array should store any objects created byt the api search results
-let searchResults = [
-
-];
 
 // TODO pulling from the marvel api should save the following Object into the above array
 

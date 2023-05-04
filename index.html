@@ -52,46 +52,60 @@
     <!-- hero -->
     <section class="hero is-medium is-link">
         <div class="hero-body">
-
-
           <div class="container">
             <section class="columns">
               <div class="column">
                 <div class="card mb-0 columns ">
                   <div class="card-content">
                     <p class="title has-text-black pb-2">
-                        Find A Hero
+                      Fill Your Longbox
                       </p>
                       <p class="subtitle has-text-black ">
-                        Search for a comic
+                        Search for a hero. Save a hero.
                       </p>
                       <form>
-
-                        <div class="field has-addons">
-                          <div class="select">
-                            <select id="search-category">
-                              <option>Title</option>
-                              <option>Character</option>
-                              <option>Year</option>
-                            </select>
-                          </div>
-                          <div class="control">
-                            <!-- use this id to select the search input in the dom -->
-                            <input
-                              id="marvel-search"
-                              class="input"
-                              type="text"
-                              placeholder="Search"
-                            />
-                          </div>
-                          <div class="control">
-                            <!-- use this id to select the search button in the dom -->
-                            <button id="marvel-search-button" class="button is-danger">
-                              Search
-                            </button>
-                          </div>
-                        </div>
+                            <div class="field has-addons">
+                              <div class="select">
+                                <select id="search-category">
+                                  <option>Title</option>
+                                  <option>Year</option>
+                                </select>
+                              </div>
+                              <div class="control">
+                                <input
+                                  id="marvel-search"
+                                  class="input"
+                                  type="text"
+                                  placeholder="Search"
+                                />
+                              </div>
+                              <div class="control">
+                                <button id="marvel-search-button" class="button is-danger">
+                                  Wiki Search 
+                                </button>
+                              </div>
+                            </div>
                       </form>
+                      <p class="subtitle has-text-black ">
+                        Want to know more? Search Wikipedia.
+                      </p>
+                      <form>
+                          <div class="field has-addons">
+                            <div class="control">
+                              <input
+                                id="wiki-search"
+                                class="input"
+                                type="text"
+                                placeholder="Search"
+                              />
+                            </div>
+                            <div class="control">
+                              <button id="wiki-search-button" class="button is-danger">
+                                Search
+                              </button>
+                            </div>
+                          </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -100,68 +114,6 @@
         </div>
       </section>
     <main class="mt-5">
-      <!-- show card modal-->
-      <div class="container">
-        <div class="modal">
-          <div class="modal-background"></div>
-          <div class="modal-content show-card-modal">
-            <div class="container">
-              <section class="columns">
-                <div class="column">
-                  <div class="card mb-0">
-                    <div class="card-content">
-                      <div class="columns is-gapless">
-                        <div class="column is-3">
-                          <div class="card-image show-card-image">
-                            <figure class="image is-2by3">
-                              <img
-                                src=""
-                                alt="Comic Cover"
-                              />
-                            </figure>
-                          </div>
-                        </div>
-                        <div class="column is-9">
-                          <div class="content">
-                            <h2 class="title is-3 title">
-                         
-                            </h2>
-                            <h1 class="title is-4">Published:</h1>
-                            <p class="subtitle is-5 published">
-              
-                            </p>
-                            <div class="columns">
-                              <div class="column">
-                                <h1 class="title is-4">Writer:</h1>
-                                <p class="subtitle is-5">
-                                  <a class="writer tooltip" data-text="im a tooltip"></a>
-                                </p>
-                              </div>
-                              <div class="column">
-                                <h1 class="title is-4" >Penciler:</h1>
-                                <p class="subtitle is-5">
-                                  <a class="penciler tooltip" data-text="">d</a>
-                                </p>
-                              </div>
-                            </div>
-
-                            <h1 class="title is-4">Cover Artist:</h1>
-                            <p class="subtitle is-5">
-                              <a class="cover-artist tooltip" data-text=""></a>
-                            </p>
-                            <p class="description">
-
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
 
         <!-- search results gallery -->
         <p class="title has-text-black-bis is-2 pb-2 has-text-weight-bold">

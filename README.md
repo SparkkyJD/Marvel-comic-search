@@ -16,7 +16,7 @@ Upon loading the application, you will be brought to the search page.
 
 In the drop down menu to the left of the search, select to search by title or year, and begin typing your search into the text box.
 
-You can then press search or hit enter to begin the search and the comic results will then be generated onto the page as so.
+You can then press search or hit enter to begin the search and the comic results will then be generated onto the page.
 
 To save a comic result, click the button in the top right of that result, and it will be saved to the browser's local storage.
 

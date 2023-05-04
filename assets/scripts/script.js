@@ -32,9 +32,8 @@ function wikiSearchLogic () {
       });
       // fetch data from wiki api
       function fetchData(x){
-        let proxyUrl = "https://cors-anywhere.herokuapp.com/";
-        let url = `${proxyUrl}https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=1&srsearch=${x}`;
-  
+        
+        let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=1&srsearch=${x}`;
         fetch(url)
           .then(function(response) {
             return (response.json());

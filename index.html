@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marvel Longbox</title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bulma CDN -->
     <link
       rel="stylesheet"
@@ -14,7 +18,7 @@
     <link rel="stylesheet" href="./assets/styles/style.css" />
   </head>
 
-  <body class="">
+  <body>
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="#">
@@ -24,13 +28,13 @@
             alt=""
           />
         </a>
-<!-- mobile nav -->
+      <!-- mobile nav -->
         <a
           role="button"
           class="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
-          data-target="navbarBasicExample"
+          id="burger"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -38,7 +42,7 @@
         </a>
       </div>
 
-      <div class="navbar-menu">
+      <div class="navbar-menu" id="nav-links">
         <div class="navbar-end">
             <a href="./index.html" class="navbar-item">
                 Search For Comics
@@ -54,58 +58,75 @@
         <div class="hero-body">
           <div class="container">
             <section class="columns">
-              <div class="column">
-                <div class="card mb-0 columns ">
+              <div class="column hero-call">
+                <h1 class="title is-1 pb-2 has-text-weight-bold has-text-centered">
+                  Welcome to Marvel Longbox!
+                  </h1>
+                  <p class="subtitle  has-text-centered">
+                    A simple site to search and store marvel comics.<br> Keep track of your collection. Make a wishlist. Or just be a hoarder. <span class="stan">Exselsior!</span>
+                  </p>
+                <div class="card mb-0">
                   <div class="card-content">
-                    <p class="title has-text-black pb-2 has-text-weight-bold">
-                      Fill Your Longbox
-                      </p>
-                      <p class="subtitle has-text-black ">
-                        Search for a hero. Save a hero.
-                      </p>
-                      <form>
+                    <div class="columns">
+                      <div class="column is-half">
+                        <p class="title has-text-black pb-2 has-text-weight-bold">
+                          Fill Your Longbox
+                          </p>
+                          <p class="subtitle has-text-black ">
+                            Search for a hero. Save a hero.
+                          </p>
+                          <form>
+                                <div class="field has-addons">
+                                  <div class="select">
+                                    <select id="search-category">
+                                      <option>Title</option>
+                                      <option>Year</option>
+                                    </select>
+                                  </div>
+                                  <div class="control">
+                                    <input
+                                      id="marvel-search"
+                                      class="input"
+                                      type="text"
+                                      placeholder="Search"
+                                    />
+                                  </div>
+                                  <div class="control">
+                                    <button id="marvel-search-button" class="button danger">
+                                      Search Marvel 
+                                    </button>
+                                  </div>
+                                </div>
+                          </form >
+                      </div>
+                      <div class="column is-half">
+                        <p class="title has-text-black pb-2 has-text-weight-bold">
+                          Fill Your Brain
+                          </p>
+                        <p class="subtitle has-text-black ">
+                          Want to know more? Search Wikipedia.
+                        </p>
+                        <form class="wiki-search-form">
                             <div class="field has-addons">
-                              <div class="select">
-                                <select id="search-category">
-                                  <option>Title</option>
-                                  <option>Year</option>
-                                </select>
-                              </div>
                               <div class="control">
                                 <input
-                                  id="marvel-search"
-                                  class="input"
+                                  id="wiki-search"
+                                  class="input wiki-search"
                                   type="text"
                                   placeholder="Search"
                                 />
                               </div>
                               <div class="control">
-                                <button id="marvel-search-button" class="button is-danger">
-                                  Search Marvel 
+                                <button id="wiki-search-button" class="button danger">
+                                  Wiki Search
                                 </button>
                               </div>
                             </div>
-                      </form >
-                      <p class="subtitle has-text-black ">
-                        Want to know more? Search Wikipedia.
-                      </p>
-                      <form class="wiki-search-form">
-                          <div class="field has-addons">
-                            <div class="control">
-                              <input
-                                id="wiki-search"
-                                class="input wiki-search"
-                                type="text"
-                                placeholder="Search"
-                              />
-                            </div>
-                            <div class="control">
-                              <button id="wiki-search-button" class="button is-danger">
-                                Wiki Search
-                              </button>
-                            </div>
-                          </div>
-                    </form>
+                      </form>
+                      </div>
+                    </div>
+
+
                   </div>
                 </div>
               </div>
@@ -113,10 +134,21 @@
 
         </div>
       </section>
-    <main class="mt-5">
-      <div class="container">
+    <main class="">
+      <!-- modal -->
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="box">
+            <p class=" title has-text-centered mb-3">You fool! You've already saved that comic!</p>
+            <button class="button is-fullwidth is-primary close-button" aria-label="close">Got It</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container main-container has-background-black-ter p-5">
         <!-- search results gallery -->
-        <p class="title has-text-black-bis is-2 pb-2 has-text-weight-bold">
+        <p class="title has-text-white is-2 pb-2 has-text-weight-bold">
           Search Results:
         </p>
         <section class="columns is-flex-wrap-wrap">
@@ -124,7 +156,6 @@
         </section>
       </div>
     </main>
-
 
     <!--crypto.js framework for auth.hash parameter-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>

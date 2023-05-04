@@ -1,34 +1,62 @@
+
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, .5)),
+  url("../images/janos-venczak-EmDe2QylecI-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+
+}
+
+.danger {
+  background-color: rgb(207, 39, 48);
+  color:white;
+}
+
+#nav-links .navbar-item:hover {
+  color: yellow;
+}
+
 #mlb-brand {
   height: 55px;
   max-height: 55px;
 }
 
-.show-card-modal {
-  max-height: 100%;
-  width: 100%;
-  overflow: hidden;
-  transition: transform 0.1s ease-in-out;
-}
-
-.writer,
-.penciler,
-.cover-artist {
-  color: black;
-}
-
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.5)),
-    url("https://images.unsplash.com/photo-1620928572438-075c466c48da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+    url("../images/erik-mclean-0_wXoeCDry0-unsplash.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .hero .card {
-  background-color:rgba(255, 255, 255, 0.779)
+  background-color:rgba(255, 255, 255, 0.779);
+  border-radius: 0 0 .25rem .25rem;
+  border-top: 10px solid rgb(207, 39, 48);
 }
 
-.show-card-image {
-  padding-right: 1.25rem;
+.hero-call {
+  background-color: rgba(0, 0, 0, 0.779);
+  padding:8px 0 0 0;
+  border-radius: .25rem
+}
+
+.title, .stan{
+  font-family: 'Luckiest Guy', cursive;
+  letter-spacing:1.5px;
+}
+
+.stan {
+  color:yellow
 }
 
 .search-item,
@@ -82,21 +110,11 @@
   opacity: 1;
 }
 
-/* .diagonal {
-  position: relative;
-  
+.main-container {
+  min-height: 100vh;
+  border-top: 10px solid rgb(207, 39, 48);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
-.diagonal::after {
-    content:'';
-    background-image: url("https://images.unsplash.com/photo-1620928572438-075c466c48da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 50%;
-    position: absolute;
-    transform: skewY(-5deg);
-    z-index: -1;
-} */
 
 /* tooltip style */
 .tooltip:hover::after {

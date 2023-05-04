@@ -32,6 +32,7 @@ function wikiSearchLogic () {
       });
       // fetch data from wiki api
       function fetchData(x){
+        
         let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=1&srsearch=${x}`;
         fetch(url)
           .then(function(response) {

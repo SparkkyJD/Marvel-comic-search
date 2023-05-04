@@ -230,8 +230,10 @@ $('#marvel-search-button').on("click", getMarvelData);
 
 // search gallery logic
 function displayResults(result, searchResultsArray) {
-    // looping through and creating cards based on the result length
-    for (var i = 0; i < result.data.results.length; i++) {
+  //clear previous search results before making a new search
+  searchResultEl.innerHTML = '';
+  // looping through and creating cards based on the result length
+  for (var i = 0; i < result.data.results.length; i++) {
         var subTitleP = document.createElement('p');
         subTitleP.classList.add('subtitle', 'is-6');
 

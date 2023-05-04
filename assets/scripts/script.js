@@ -11,9 +11,7 @@ function openModal() {
   showModal.classList.add('is-active');
 }
 
-modalClose.addEventListener('click', function(){
-  showModal.classList.remove('is-active');
-});
+
 
 //mobile menu
 const burgerIcon = document.querySelector('#burger');
@@ -58,6 +56,9 @@ function wikiSearchLogic () {
 }
 
 if (window.location.href.includes("index.html")) {
+    modalClose.addEventListener('click', function(){
+      showModal.classList.remove('is-active');
+    });
     wikiSearchLogic();
   }
 

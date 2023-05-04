@@ -10,62 +10,44 @@ const catSelect = document.querySelector("#search-category");
 const modalTrigger = document.querySelectorAll(".modal-trigger");
 const saveButton = document.querySelectorAll('.save-btn');
 
-
-
-//TODO wiki tooltips
 const wikiInput = document.querySelector(".wiki-search");
-const wikiBtn = document.querySelector(".wiki-search-button");
+const wikiForm = document.querySelector(".wiki-search-form");
 
-  wikiBtn.addEventListener('click', (event)=> {
-  event.preventDefault();
-  fetchData(wikInput.value);
-})
-// fetch data from wiki api
-function fetchData(x){
-  let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=1&srsearch=${x}`;
-  fetch(url)
-    .then(function(response) {
-      return (response.json());
-    })
-    .then(function(data){
-      let resultsData = data.query.search;
-      displayResults(resultsData);
-    console.log(data);
-    })
+
+function wikiSearchLogic () {
+    wikiForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        fetchData(wikiInput.value);
+      });
+      // fetch data from wiki api
+      function fetchData(x){
+        let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=1&srsearch=${x}`;
+        fetch(url)
+          .then(function(response) {
+            return (response.json());
+          })
+          .then(function(data){
+            let resultsData = data.query.search;
+            displayWikiResults(resultsData);
+            console.log(data);
+          })
+      }
+      // take user to the wiki page of the search result
+      function goToPage(url) {
+        window.open(url, '_blank');
+      }
+      // pull data from array and append to html
+      function displayWikiResults(Array){
+        let item = Array[0];
+        let itemUrl = encodeURI(`https://en.wikipedia.org/wiki/${item.title}`);
+        goToPage(itemUrl); // automatically go to the first search result
+      }
 }
-// pull data from array and append to html
-function displayResults(Array){
-  let item = Array[0];
-  let itemTitle = item.title;
-  let itemSnippet = item.snippet;
-  localStorage.setItem(itemTitle, "");
-  let itemUrl = encodeURI(`https://en.wikipedia.org/wiki/${item.title}`);
-  searchResults.insertAdjacentHTML('beforeend',
-    `<article class="resultItem">
-      <h2 class="itemTitle"><a href="${itemUrl}" target="_blank" rel="noopener">${itemTitle}</a></h2>
-      <p class="itemSnippet">${itemSnippet}</p>
-    </article>`);
-}
 
+if (window.location.href.includes("index.html")) {
+    wikiSearchLogic();
+  }
 
-function modalPopulate (event) {
-    var mCover = document.querySelector(".modal-cover");
-    var mTitle = document.querySelector(".modal-title");
-    var mWriter = document.querySelector(".modal-writer");
-    var mPenciler = document.querySelector(".modal-penciler");
-    var mDescription = document.querySelector(".modal-description");
-    var mCoverArtist = document.querySelector(".modal-cover-artist");
-    var mDate = document.querySelector(".modal-published");
-    
-    mWriter.textContent = event.target.getAttribute("data-writer");
-    mDate.textContent = event.target.getAttribute("data-published");
-    mTitle.textContent = event.target.getAttribute("data-title");
-    mPenciler.textContent = event.target.getAttribute("data-penciler");
-    mCoverArtist.textContent = event.target.getAttribute("data-coverartist");
-    mCover.src = event.target.getAttribute("data-coverurl");
-    //insert a function that will run a fetch on the writer, penciler, cover artist and save the result into  multiple variables.
-    //on hover the content attribute of the tooltip should exuel the var that corresponds to the link being hovered over.
-    }
 
 var collectionEntry = {
     writer: "",
@@ -234,7 +216,6 @@ $('#marvel-search-button').on("click", getMarvelData);
 
 // search gallery logic
 function displayResults(result, searchResultsArray) {
-    console.log(result.data.results);
     // looping through and creating cards based on the result length
     for (var i = 0; i < result.data.results.length; i++) {
         var subTitleP = document.createElement('p');
@@ -421,8 +402,6 @@ if (window.location.href.includes("gallery.html")) {
 
         resultCard.appendChild(itemCard);
         searchResultEl.appendChild(resultCard);
-
-        modalLogic();
     }
 }
 

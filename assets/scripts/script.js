@@ -1,14 +1,27 @@
-// ToDo: Get api keys and store them into variables
-
-// ToDo: Use selectors to store the html elements into variables
 var marvelSearchButton = document.querySelector('#marvel-search-button');
 var resultList = document.querySelector('#test-list');
 var searchResultEl = document.querySelector('.is-flex-wrap-wrap');
 const showModal = document.querySelector(".modal");
 const modalBackground = document.querySelector(".modal-background");
 const catSelect = document.querySelector("#search-category");
-const modalTrigger = document.querySelectorAll(".modal-trigger");
+const modalClose = document.querySelector(".close-button");
 const saveButton = document.querySelectorAll('.save-btn');
+
+function openModal() {
+  showModal.classList.add('is-active');
+}
+
+modalClose.addEventListener('click', function(){
+  showModal.classList.remove('is-active');
+});
+
+//mobile menu
+const burgerIcon = document.querySelector('#burger');
+const navbarMenu = document.querySelector('#nav-links');
+
+burgerIcon.addEventListener('click', function () {
+  navbarMenu.classList.toggle('is-active');
+});
 
 const wikiInput = document.querySelector(".wiki-search");
 const wikiForm = document.querySelector(".wiki-search-form");
@@ -63,7 +76,7 @@ function addToLocalStorage() {
     var storedCollection = JSON.parse(localStorage.getItem('userCollection')) || [];
     for (i = 0 ; i < storedCollection.length; i++) {
         if (JSON.stringify(collectionEntry) === JSON.stringify(storedCollection[i])) {
-            console.log("you already saved this item");
+            openModal();
             return;
         }
     }
@@ -108,7 +121,7 @@ function addToLocalStorage() {
     };
     const storedCollection = removeFromLocalStorage(collectionEntry);
     localStorage.setItem('userCollection', JSON.stringify(storedCollection));
-    parent.remove();
+    parent.parentNode.remove();
   }
 
 // marvel api logic
@@ -366,8 +379,7 @@ if (window.location.href.includes("gallery.html")) {
         var resultCard = document.createElement('div');
         resultCard.classList.add('column', 'is-one-fifth');
 
-        // Still need to finish generating content for the modal
-        // But this is for the data on the result cards
+        //result card data
         titleP.textContent = storedCollection[i].title;
         if (storedCollection[i].coverUrl.length < 1) {
             imgTag.src = './assets/images/sorry-cannot-be-found.png';

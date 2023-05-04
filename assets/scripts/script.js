@@ -277,7 +277,6 @@ function displayResults(result, searchResultsArray) {
         itemCard.setAttribute('data-writer', searchResultsArray[i].writer);
 
         itemCard.addEventListener('click', function(event) {
-                modalPopulate(event);
                 showModal.classList.add('is-active');
         })
         

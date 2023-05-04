@@ -1,8 +1,7 @@
 // ToDo: Get api keys and store them into variables
 
 // ToDo: Use selectors to store the html elements into variables
-// var searchInput = document.querySelector('#marvel-search');
-// var searchButton = document.querySelector('#marvel-search-button');
+var marvelSearchButton = document.querySelector('#marvel-search-button');
 var resultList = document.querySelector('#test-list');
 var searchResultEl = document.querySelector('.is-flex-wrap-wrap');
 const showModal = document.querySelector(".modal");
@@ -12,32 +11,51 @@ const modalTrigger = document.querySelectorAll(".modal-trigger");
 const saveButton = document.querySelectorAll('.save-btn');
 
 
-// modal logic
-function modalLogic () {
-    //duplicate query selector allows both static and dynamic elements to have event listener
-    const modalTrigger = document.querySelectorAll(".modal-trigger");
-    modalBackground.addEventListener('click', function () {
-        showModal.classList.remove('is-active');
-      });
-    //   modalTrigger.forEach(function(trigger) {
-    //     trigger.addEventListener('click', function (event) {
-    //         modalPopulate(event);
-    //         showModal.classList.add('is-active');
-    //       });
-    //   });
-};
 
 //TODO wiki tooltips
+const wikiInput = document.querySelector(".wiki-search");
+const wikiBtn = document.querySelector(".wiki-search-button");
+
+  wikiBtn.addEventListener('click', (event)=> {
+  event.preventDefault();
+  fetchData(wikInput.value);
+})
+// fetch data from wiki api
+function fetchData(x){
+  let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=1&srsearch=${x}`;
+  fetch(url)
+    .then(function(response) {
+      return (response.json());
+    })
+    .then(function(data){
+      let resultsData = data.query.search;
+      displayResults(resultsData);
+    console.log(data);
+    })
+}
+// pull data from array and append to html
+function displayResults(Array){
+  let item = Array[0];
+  let itemTitle = item.title;
+  let itemSnippet = item.snippet;
+  localStorage.setItem(itemTitle, "");
+  let itemUrl = encodeURI(`https://en.wikipedia.org/wiki/${item.title}`);
+  searchResults.insertAdjacentHTML('beforeend',
+    `<article class="resultItem">
+      <h2 class="itemTitle"><a href="${itemUrl}" target="_blank" rel="noopener">${itemTitle}</a></h2>
+      <p class="itemSnippet">${itemSnippet}</p>
+    </article>`);
+}
 
 
 function modalPopulate (event) {
-    mCover = document.querySelector(".modal-cover");
-    mTitle = document.querySelector(".modal-title");
-    mWriter = document.querySelector(".modal-writer");
-    mPenciler = document.querySelector(".modal-penciler");
-    mDescription = document.querySelector(".modal-description");
-    mCoverArtist = document.querySelector(".modal-cover-artist");
-    mDate = document.querySelector(".modal-published");
+    var mCover = document.querySelector(".modal-cover");
+    var mTitle = document.querySelector(".modal-title");
+    var mWriter = document.querySelector(".modal-writer");
+    var mPenciler = document.querySelector(".modal-penciler");
+    var mDescription = document.querySelector(".modal-description");
+    var mCoverArtist = document.querySelector(".modal-cover-artist");
+    var mDate = document.querySelector(".modal-published");
     
     mWriter.textContent = event.target.getAttribute("data-writer");
     mDate.textContent = event.target.getAttribute("data-published");
@@ -306,8 +324,6 @@ function displayResults(result, searchResultsArray) {
 
         resultCard.appendChild(itemCard);
         searchResultEl.appendChild(resultCard);
-
-        modalLogic();
     }
 }
 

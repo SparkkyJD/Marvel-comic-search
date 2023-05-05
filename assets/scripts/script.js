@@ -13,6 +13,8 @@ function openModal() {
 
 
 
+
+
 //mobile menu
 const burgerIcon = document.querySelector('#burger');
 const navbarMenu = document.querySelector('#nav-links');
@@ -277,10 +279,7 @@ function displayResults(result, searchResultsArray) {
         itemCard.setAttribute('data-datePublished', searchResultsArray[i].datePublished);
         itemCard.setAttribute('data-writer', searchResultsArray[i].writer);
 
-        itemCard.addEventListener('click', function(event) {
-                showModal.classList.add('is-active');
-        })
-        
+  
 
         var resultCard = document.createElement('div');
         resultCard.classList.add('column', 'is-one-fifth');

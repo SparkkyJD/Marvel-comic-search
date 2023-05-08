@@ -13,6 +13,8 @@ function openModal() {
 
 
 
+
+
 //mobile menu
 const burgerIcon = document.querySelector('#burger');
 const navbarMenu = document.querySelector('#nav-links');
@@ -136,14 +138,14 @@ function getMarvelData(event) {
 
 function getMarvelInputData(searchInput) {
     console.log("Marvel Output ", searchInput);
-    const limit = 15;
+    const limit = 15; //limits results to the latest 15
     const publicMarvelAPIKey = "9aef7c40b03dcfc94acc975098998139";
     const privateMarvelAPIKey = "9633dc804c1e3db14e515eb767c997529eceeccc";
     var timestamp = Date.now();
     var marvelBaseURL = "https://gateway.marvel.com:443/v1/public/comics";
-    var MD5Input = timestamp + privateMarvelAPIKey + publicMarvelAPIKey;
-    var hash = CryptoJS.MD5(MD5Input).toString(CryptoJS.enc.Hex); //Marvel API's security measure
-    var auth = `&ts=${timestamp}&apikey=${publicMarvelAPIKey}&hash=${hash}`;
+    var MD5Input = timestamp + privateMarvelAPIKey + publicMarvelAPIKey; // essential parameters to successfully call API
+    var hash = CryptoJS.MD5(MD5Input).toString(CryptoJS.enc.Hex); //Marvel API's security measure 
+    var auth = `&ts=${timestamp}&apikey=${publicMarvelAPIKey}&hash=${hash}`; //
     var title = $("#marvel-search").val();
     var characters = $("#marvel-search").val();
     var year = $("#marvel-search").val();
@@ -165,7 +167,7 @@ function getMarvelInputData(searchInput) {
         return console.log("Error: You need to search a character, title, and/or year of issue");
     }
 
-    var marvelURL = `${marvelBaseURL}${marvelQuery}${auth}`;
+    var marvelURL = `${marvelBaseURL}${marvelQuery}${auth}`; // url concatenation + auth parameters in this position ensure different search results each time
     
     console.log("Query ", marvelURL);
 
@@ -180,19 +182,20 @@ function getMarvelInputData(searchInput) {
               var thumbnail =
                 result.data.results[i].thumbnail.path +
                 "." +
-                result.data.results[i].thumbnail.extension;
+                result.data.results[i].thumbnail.extension; // concatenates image url with extension into one path, producing an image
       
               var titleEl = result.data.results[i].title;
               var isoStringDate = result.data.results[i].dates[0].date;
               var date = new Date(isoStringDate);
               
-              var formattedDate = `${date.getDate().toString().padStart(2,'0')}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getFullYear()}`;
+              var formattedDate = `${date.getDate().toString().padStart(2,'0')}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getFullYear()}`; // converts ISO string to human readable format
       
+              // stores custom parameters for future code logic use to populate page with results
               let searchResult = {
                 coverUrl: thumbnail,
                 title: titleEl,
                 datePublished: formattedDate,
-                writer: "",
+                writer: "", // empty strings account for highly variable information in these sections
                 penciler: "",
                 coverArtist: "",
                 description: ""
@@ -202,13 +205,13 @@ function getMarvelInputData(searchInput) {
               searchResultsArray.push(searchResult); //completed array with cover, title, pub
       
               var creatorItems = result.data.results[i].creators.items;
-      
+              //accesses object array with key-value pairs, first by designating the items property with an index
               if (creatorItems) {
                 for (var j = 0; j < creatorItems.length; j++) {
-                  var desiredItem = creatorItems[j];
-                  var name = desiredItem.name;
+                  var desiredItem = creatorItems[j]; //further code logic allows easy access to any key-value pair
+                  var name = desiredItem.name; 
                   var role = desiredItem.role;
-        
+                  //pinpoints desired roles for inclusion in search results, then includes them if available
                   if (role === "writer") {
                     searchResult.writer = name;
                   } else if (role === "penciler" || "penciller") {
@@ -218,7 +221,7 @@ function getMarvelInputData(searchInput) {
                 }
               }
             }
-      
+          //critical reference for subsequent code logic, when deciding how to populate the page
           console.log("Search Results Array ", searchResultsArray);
        
           displayResults(result, searchResultsArray);
@@ -226,7 +229,7 @@ function getMarvelInputData(searchInput) {
           });
 
       }
-
+//runs above logic on click 
 $('#marvel-search-button').on("click", getMarvelData);
 
 // search gallery logic
@@ -277,10 +280,7 @@ function displayResults(result, searchResultsArray) {
         itemCard.setAttribute('data-datePublished', searchResultsArray[i].datePublished);
         itemCard.setAttribute('data-writer', searchResultsArray[i].writer);
 
-        itemCard.addEventListener('click', function(event) {
-                showModal.classList.add('is-active');
-        })
-        
+  
 
         var resultCard = document.createElement('div');
         resultCard.classList.add('column', 'is-one-fifth');
